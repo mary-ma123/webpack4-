@@ -32,6 +32,7 @@ function getIPAdress(){
     }  
 } 
 var host = getIPAdress();
+
 //动态添加入口
 function getEntry(){
     var entry = {};
@@ -60,6 +61,27 @@ var getHtmlConfig = function(name,chunks){
         chunks:[name,'commons']
     }
 }
+
+//获取环境配置
+var envType = process.env.NODE_ENV; //环境类型
+var env = {}; //当前使用的环境对应的配置
+switch (envType){
+	case 'dev':
+		//开发
+		env = require('./dev.env.js');
+		break;
+	case 'prod':
+		//生产
+		env = require('./prod.env.js');
+		break;
+	case 'test':
+		//测试
+		env = require('./test.env.js');
+		break;		
+	default:
+		break;
+}
+
 
 module.exports = {
     entry:getEntry(),
@@ -158,11 +180,11 @@ module.exports = {
             }
         ]
     },
-    mode:"development",
+    //mode:"development",
     performance:{
         hints:false
     },
-	devtool: "source-map",  // 开启调试模式
+	devtool: envType=='prod' ? "" : "source-map",  // 开启调试模式
     //插件
     plugins:[
         new MiniCssExtractPlugin({
@@ -188,8 +210,7 @@ module.exports = {
 		//设置每一次build之前先删除dist
 		new CleanWebpackPlugin(
 			{
-				//root: __dirname, //根目录
-				root: path.resolve(__dirname, '..'),
+				root: path.resolve(__dirname, '..'),//root: __dirname, //根目录
 				verbose: true, //开启在控制台输出信息
 				dry: false ,//为false是删除文件夹的，为true是不删除的，默认值是false
 				//在Webpack编译之前删除一次文件  使用!否定模式来排除文件 ['**/*', '!static-files*'] 
@@ -198,7 +219,10 @@ module.exports = {
 				cleanAfterEveryBuildPatterns: ['dist*.*'],
 				cleanStaleWebpackAssets: false, //自动删除所有未使用的webpack资产重建
 			}
-		)
+		),
+		new webpack.DefinePlugin({ //多环境配置
+			'process.env': env
+		})
     ],
 	/**
 	 * 公共模块的引入
@@ -230,6 +254,8 @@ module.exports = {
         open:true
     }
 }
+
+
 //配置页面
 var entryObj = getEntry();
 var htmlArray = [];

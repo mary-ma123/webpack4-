@@ -13,7 +13,6 @@ return element;
  }
 document.body.appendChild(elEcomponent());
 
-console.log('webpack-a')
 
 console.log(process.env)
 

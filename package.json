@@ -4,8 +4,10 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"dev": "webpack && webpack-dev-server --config webpack.config.js",
-		"build": "webpack --mode production"
+		"dev": "cross-env NODE_ENV=dev webpack-dev-server",
+		"test": "cross-env NODE_ENV=test webpack-dev-server",
+		"build:test": "cross-env NODE_ENV=test webpack --config webpack.config.js",
+		"build:prod": "cross-env NODE_ENV=prod webpack --config webpack.config.js"
 	},
 	"keywords": [],
 	"author": "",
