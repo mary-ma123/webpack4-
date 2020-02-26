@@ -1,0 +1,50 @@
+html,body,div, span,applet,object,iframe,h1,h2,h3,h4,
+h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,
+cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,dd,dl,dt,li,ol,ul,fieldset,form,label,
+legend {margin: 0;padding: 0;border: 0;outline: 0;}
+img {border: none;}
+p {margin-bottom: 0;}
+body,a,input,select,
+button {
+    font-family: "Microsoft Yahei", "Droid Sans Fallback", "Arial", "Helvetica", "sans-serif", "宋体";
+    font-size: 14px;outline: none;color: #666;text-decoration: none;-webkit-appearance: none;/*用于IOS下移除原生样式*/
+    -webkit-tap-highlight-color:rgba(0,0,0,0);/*去除获取焦点时半透明背景*/
+}
+ul,ol {list-style-type: none;padding: 0;margin: 0;}
+a {color: #428bca;text-decoration: none;}
+a:hover {text-decoration: none;}
+table {text-align: center;vertical-align: middle;}
+th {text-align: center;vertical-align: middle;}
+
+
+/* 重置 HTML5 元素 */
+article, aside, details, figcaption, figure, footer,header, hgroup, menu, nav, section,
+summary, time, mark, audio, video {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+mark { background: #ff0; }
+
+/*媒体查询*/
+/*.re(@width){
+    @xs : 100px/(1200px/@width);
+    @media (max-width:(@width + 2px)){
+        html{
+            font-size:@xs;
+        }
+    }
+}*/
+/*.re(320px);*/
+
+
+/*@media screen and (min-width:320px){html{font-size:12px;}}*/
+/*@media only screen and (min-width: 1441px) { html{ font-size: 45px; }}*/ 
+
+/*层级*/
+@Z5:5;@Z10:10;@Z15:15;@Z20:20;@Z30:30;@Z50:50;@Z100:100;@Z500:500;@Z1000:1000; 
+
+
+/* 解决搜狗浏览器密码输入框中自带软键盘 */
+#sogou_secure_inputs_container{display:none;}
+input::-webkit-input-safebox-button{display:none;}
